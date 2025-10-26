@@ -1,9 +1,12 @@
 import { readFile } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const read = async () => {
-    const filePath = join(process.cwd(), 'fileToRead.txt');
-    
+    const filePath = join(__dirname,'files', 'fileToRead.txt');
     try {
         const content = await readFile(filePath, 'utf8');
         console.log(content);

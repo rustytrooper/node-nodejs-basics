@@ -1,8 +1,13 @@
 import { writeFile } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const create = async () => {
-     const filePath = join(process.cwd(), 'files', 'fresh.txt');
+     const filePath = join(__dirname, 'files', 'fresh.txt');
     
     try {
         await writeFile(filePath, 'I am fresh and young', { flag: 'wx' });
